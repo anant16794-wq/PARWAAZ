@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Pie Chart</title>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+<body>
+  <div id="container" style="height: 400px; width: 400px; margin: auto;"></div>
+
+  <script>
+    Highcharts.chart('container', {
+      chart: {
+        type: 'pie',
+        options3d: {
+          enabled: true,
+          alpha: 45,
+          beta: 0
+        }
+      },
+      title: {
+        text: '3D Pie Chart Example'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          depth: 45,
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+          }
+        }
+      },
+      series: [{
+        name: 'Votes',
+        data: [
+          ['Red', 12],
+          ['Blue', 19],
+          ['Yellow', 3],
+          ['Green', 5],
+          ['Purple', 2]
+        ]
+      }]
+    });
+  </script>
+</body>
+</html>
