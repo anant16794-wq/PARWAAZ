@@ -46,6 +46,21 @@
             animation: head 0.5s ease-out forwards;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .logo img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
         @keyframes head{
             0%{
                 opacity: 0;
@@ -221,9 +236,12 @@
 <body>
     <header>
         <div class="head">
-            <label>Parwaaz</label>
+             <div class="logo">
+        <img src="logo.png" alt="Logo">
+        PARWAAZ
+        </div>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="homepage3.html">Home</a></li>
                 <li><a href="aboutpage.html">About us</a></li>
                 <li><a href="#">Test</a></li>
                 <li><a href="#">Feedback</a></li>
@@ -260,7 +278,7 @@
 
         <div class="buttons">
             <div class="button3">
-                <button type="button" onclick="window.location.href='homepage3.html'">Submit</button>
+                <button type="button" href="homepage3.html">Submit</button>
             </div>
         </div>
     </div>
