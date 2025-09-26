@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 25px;
+            grid-auto-flow: dense;
+            gap: 10px;
+            width: 90%;
+            margin: 50px auto;
+        }
+
+        .gallery div {
+            text-align: center;
+            font-weight: bold;
+            cursor: default;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery div:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .gallery div div {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 90%;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.4;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .col1{ grid-row: span 16; background: url("19.jpg") center/cover no-repeat; } 
+        .col2{ grid-row: span 14; background: url("23.jpg") center/cover no-repeat; } 
+        .col3{ grid-row: span 16; background: url("24.jpg") center/cover no-repeat; } 
+        .col4{ grid-row: span 14; background: url("37.jpg") center/cover no-repeat; } 
+        .col5{ grid-row: span 20; background: url("45.jpeg") center/cover no-repeat; } 
+        .col6{ grid-row: span 16; background: url("41.jpg") center/cover no-repeat; } 
+        .col7{ grid-row: span 14; background: url("42.jpg") center/cover no-repeat; } 
+        .col8{ grid-row: span 14; background: url("43.jpg") center/cover no-repeat; }
+    </style>
+</head>
+
+<body>
+    <div class="gallery">
+        <div class="col1">
+            <div>Clothes modelling is associated with brands and designers who use
+                models to promote their designs.</div>
+        </div>
+        <div class="col2"><div>A waterfall is any point in a river or stream where water flows over a vertical drop or a series of steep drops.</div></div>
+        <div class="col3"><div>The Himalayas are a vast mountain range in Asia, acting as a natural barrier.</div></div>
+        <div class="col4"><div>Rainforests are forests characterized by the presence of epiphytes and lianas.</div></div>
+        <div class="col5"><div>It was quite windy. We loved walking on the sand. The sound of the waves at short intervals was amazing.</div></div>
+        <div class="col6"><div>The sunset is defined in astronomy as the moment the upper limb of the Sun disappears below the horizon.</div></div>
+        <div class="col7"><div>Photography is a popular method, with digital and film options offering unique aesthetics.</div></div>
+        <div class="col8"><div>They are known for their thick, smoky gray coat with dark spots and a long, bushy tail, which they use for balance and warmth.</div></div>
+    </div>
+</body>
+</html>

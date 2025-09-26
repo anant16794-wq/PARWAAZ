@@ -1,191 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Templates</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
-  <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        height: 100vh;
-        overflow: hidden;
-        animation: fadeIn 2s ease-in-out;
-        position: relative;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combined Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
 
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-blend-mode: overlay;
-        z-index: -1;
-        animation: bgZoom 20s ease-in-out infinite alternate;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+    z-index: 0;
+}
 
-    .heading {
-        background: linear-gradient(90deg, #003366, #005f73);
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        padding: 0 50px;
-        box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
-        animation: slideDown 1.5s ease;
-        position: relative;
-        z-index: 10;
-    }
+body::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+            linear-gradient(rgba(185, 207, 255, 0.2), rgba(198, 215, 253, 0.2)),
+            url("51.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: fixed;
+            opacity: 0.1;
+            color: rgb(1, 19, 68);
+            z-index: -1;
+        }
 
-    ul {
-        list-style: none;
-        display: flex;
-        gap: 30px;
-        font-size: 18px;
-        margin: 0;
-    }
+.heading {
+    background: linear-gradient(90deg, #003366, #005f73);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+}
 
-    li {
-        position: relative;
-    }
+.heading ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-size: 18px;
+    margin: 0;
+}
 
-    .heading li a {
-        text-decoration: none;
-        color: #ffffff;
-        font-weight: 500;
-        transition: color 0.3s ease;
-        padding: 5px;
-        position: relative; 
-        z-index: 11;
-    }
+.heading li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 5px;
+    position: relative;
+}
 
-    .heading li a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      height: 3px;
-      width: 0;
-      background-color: #000000;
-      transition: width 0.4s ease;
-    }
+.heading li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 3px;
+    width: 0;
+    background-color: #000;
+    transition: width 0.4s ease;
+}
 
-    .heading li a:hover {
-      color: #000000;
-    }
+.heading li a:hover {
+    color: #000;
+}
 
-    .heading li a:hover::after {
-      width: 100%;
-    }
+.heading li a:hover::after {
+    width: 100%;
+}
 
-    .content {
-        display: flex;
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 40px;
+    text-align: center;
+}
+
+.text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+}
+
+.para {
+    font-size: 1.5rem;
+    font-family: 'Georgia', serif;
+    color: #000;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+.text img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.btn5 {
+    border: none;
+    background: #fff;
+    color: #000;
+    padding: 20px 45px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 50px;
+    border-radius: 25px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn5:hover {
+    transform: scale(1.1);
+    background: #000;
+    color: #fff;
+}
+
+
+.quote-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 45px;
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+    gap: 40px;
+    margin: 100px auto;
+}
+
+.images-left {
+    position: relative;
+    width: 45%;
+    max-width: 400px;
+    height: 300px;
+}
+
+.images-left img {
+    width: 270px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    position: absolute;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.images-left img:nth-child(1) { top: 0; left: 0; z-index:3; transform: rotate(-5deg); }
+.images-left img:nth-child(2) { top: 60px; left: 90px; z-index:2; transform: rotate(5deg); }
+.images-left img:nth-child(3) { top: 120px; left: 180px; z-index:1; transform: rotate(-2deg); }
+
+.images-left img:hover { transform: scale(1.1) rotate(0deg); z-index:4; }
+
+.quote-right {
+    width: 50%;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #333;
+    font-style: italic;
+    position: relative;
+    margin-left: 50px;
+}
+
+.quote-right::before {
+    content: "“";
+    font-size: 3rem;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    color: #999;
+}
+
+.quote-right::after {
+    content: "”";
+    font-size: 3rem;
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    color: #999;
+}
+
+.quote-right button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #005f73;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.quote-right button:hover {
+    background-color: #00bcd4;
+    color: #003366; 
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+
+.slideshow-box {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    height: 400px;
+    margin: 80px auto;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fade 16s infinite;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.slide-image {
+    flex: 1;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.slide-text {
+    flex: 1;
+    padding: 40px;
+    color: #333;
+}
+
+.slide-text h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #003366;
+}
+
+.slide-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.footer-column {
+    background-color: #003366;
+    color: #fff;
+    padding: 30px 20px;
+    width: 100%;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.footer-column h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.footer-column ul li {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-column ul li:hover {
+    color: #00bcd4;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border-radius: 50%;
+    background-color: #005f73;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #00bcd4;
+    color: #003366;
+    transform: scale(1.2);
+}
+
+@keyframes fade {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    25% { opacity: 1; }
+    30% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.slideshow-box .slide:nth-child(1) { animation-delay: 0s; }
+.slideshow-box .slide:nth-child(2) { animation-delay: 4s; }
+.slideshow-box .slide:nth-child(3) { animation-delay: 8s; }
+.slideshow-box .slide:nth-child(4) { animation-delay: 12s; }
+
+@media (max-width: 768px) {
+    .text, .quote-box, .slide {
         flex-direction: column;
-        align-items: center; 
-        justify-content: center;
-        text-align: center; 
-        width: 1500px;
-        height: 600px;
-        margin: 100px auto;
-        padding: 40px;
-        animation: fadeUp 2s ease forwards;
-        opacity: 0.5;
-        position: relative; 
-        z-index: 5;
+        text-align: center;
     }
-
-    .text{
-        display: flex;
-        margin-top: -200px;
+    .slide img, .slide p {
+        width: 100%;
     }
-
-    .para {
-        font-size: 30px;
-        font-family: 'Georgia', serif;
-        color: #000000;
-        line-height: 1.6;
-        margin: 20px 0;
-        margin-top: 100px;
-        margin-right: 100px;
+    .images-left {
+        width: 100%;
+        height: auto;
     }
-
-    .btn5 {
-        border: none;
-        background: #ffffff;
-        color: #000000;
-        padding: 20px 45px;
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 50px;
-        border-radius: 25px;
-        transition: transform 0.3s ease, background 0.3s ease;
-        box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    .slideshow-box {
+        flex-direction: column;
+        height: auto;
     }
-
-    .btn5:hover {
-        transform: scale(1.1);
-        background: #000000;
-        color: #ffffff;
+    .slide {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .slide-image, .slide-text {
+        flex: unset;
+        width: 100%;
+        height: auto;
     }
-
-    @keyframes slideDown {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(0); }
+    .slide-text {
+        padding: 20px;
     }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes bgZoom {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
-    }
-  </style>
+}
+</style>
 </head>
 <body>
-    <div class="heading">
-        <div class="allbtn">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Test</a></li>
-                <li><a href="login.html">Log In</a></li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="content">
-        <div class="text">
-            <label class="para">
-                Choosing the right stream or college can be<br>
-                confusing. Our quick quiz helps you find courses<br>
-                and career paths that match your strengths. Start<br>
-                now and take the first step toward your future!
-            </label> 
-            <img src="43.jpg">
+<div class="heading">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="login.html">About Us</a></li>
+        <li><a href="login.html">Colleges</a></li>
+        <li><a href="login.html">Scholarships</a></li>
+        <li><a href="login.html">Log Out</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    <div class="text">
+        <div class="para">
+            Choosing the right stream or college can be<br>
+            confusing. Our quick quiz helps you find courses<br>
+            and career paths that match your strengths. Start<br>
+            now and take the first step toward your future!
         </div>
-        <div class="btngrp">
-            <button class="btn5">Take Test</button>   
+        <img src="48.jpeg" alt="Illustration">
+    </div>
+    <button class="btn5">Take Test</button>
+</div>
+
+<div class="quote-box">
+    <div class="images-left">
+        <img src="1.jpeg" alt="Image 1">
+        <img src="2.jpeg" alt="Image 2">
+        <img src="3.jpeg" alt="Image 3">
+    </div>
+    <div class="quote-right">
+        Life is full of moments, and each image tells a story that words cannot.
+        <a href="#"><button>View More</button>
+    </a>
+    </div>
+</div>
+
+<div class="slideshow-box">
+    <div class="slide">
+        <div class="slide-image"><img src="1.jpeg" alt="Slide 1"></div>
+        <div class="slide-text">
+            <h2>Explore Opportunities</h2>
+            <p>Discover different career paths and choose the right one for your future.</p>
         </div>
     </div>
+    <div class="slide">
+        <div class="slide-image"><img src="2.jpeg" alt="Slide 2"></div>
+        <div class="slide-text">
+            <h2>Learn with Us</h2>
+            <p>Gain skills and knowledge with courses designed to match your strengths.</p>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="slide-image"><img src="3.jpeg" alt="Slide 3"></div>
+        <div class="slide-text">
+            <h2>Shape Your Career</h2>
+            <p>Get guidance and tools that help you move confidently toward your goals.</p>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="slide-image"><img src="19.jpg" alt="Slide 4"></div>
+        <div class="slide-text">
+            <h2>Achieve Success</h2>
+            <p>Your journey starts here. Take the next step and unlock new possibilities.</p>
+        </div>
+    </div>
+</div>
+<div class="footer-column">
+    <h3>Contact Us</h3>
+    <ul>
+        <li>Phone Number: +91 9140959457</li>
+        <li>Email ID: itsteamparwaaz@gmail.com</li>
+        <li>WhatsApp: +91 9140959457</li>
+    </ul>
+
+    <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+</div>
+
 </body>
 </html>
