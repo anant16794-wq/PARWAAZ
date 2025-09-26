@@ -12,10 +12,9 @@
 <body>
   <div id="container" style="height: 400px; width: 400px; margin: auto;"></div>
   <h1 id="h1">hello</h1>
+  <p><%= username %></p>
 
-  
 
-  <script src="/pie_chart.js"></script>
   <script>
     Highcharts.chart('container', {
       chart: {
@@ -43,10 +42,10 @@
       series: [{
         name: 'Votes',
         data: [
-          ['Science', 19],
-          ['Arts', 3],
-          ['Vocational', 5],
-          ['Commerce', 2]
+          ['Science', <%= stats.science %>],
+          ['Arts', <%= stats.arts %>],
+          ['Vocational', <%= stats.vocal %>],
+          ['Commerce', <%= stats.commerce %>]
         ]
       }]
     });
