@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/quiz', (req,res) => {
-    res.render('quiz')
+    res.render('quiz1')
 })
 
 router.post('/quiz' , (req,res) => {
@@ -215,7 +215,7 @@ router.post('/quiz' , (req,res) => {
 })
 
 router.get('/quiz2', (req,res) => {
-    res.render('quiz2')
+    res.render('quizS')
 })
 
 

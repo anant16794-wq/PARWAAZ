@@ -4,10 +4,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'));
 
-
+const indexRouter = require('./routes/index.routes')
+app.use ('/', indexRouter)
 
 const quizRouter = require('./routes/quiz.routes')
-app.use ('/', quizRouter)
+app.use ('/Q', quizRouter)
 
 app.set('view engine','ejs')
 

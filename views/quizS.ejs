@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Page</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #e0f0ff, #d9e4ff, #f0f4ff);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #0033cc;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Progress bar */
+    .progress-container {
+        width: 90%;
+        max-width: 700px;
+        height: 18px;
+        background-color: #d6e0ff;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        overflow: hidden;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #4d79ff, #3366ff, #0033cc);
+        border-radius: 10px;
+        transition: width 0.4s ease;
+    }
+
+    /* Question card */
+    .question {
+        width: 100%;
+        max-width: 700px;
+        padding: 25px 20px;
+        margin: 20px auto;
+        background: #ffffffcc;
+        border-radius: 15px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        text-align: center;
+        transform: scale(1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .question:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .question p {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #002080;
+        margin-bottom: 20px;
+    }
+
+    .options {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .options input {
+        display: none; /* Hide default radio */
+    }
+
+    .options label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e6ecff;
+        padding: 10px 18px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        user-select: none; /* Prevent text highlighting */
+    }
+
+    .options label:hover {
+        background: #ccd9ff;
+        transform: scale(1.05);
+    }
+
+    /* Selected state */
+    .options input:checked + span {
+        background: #4d79ff;
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 25px;
+        transition: background 0.3s ease, transform 0.2s ease;
+        transform: scale(1.1);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .prefer-not {
+        font-style: italic;
+        cursor: pointer;
+        display: block;
+        margin-top: 10px;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .button2 {
+        display: block;
+        text-align: center;
+        margin: 40px auto;
+        padding: 15px 40px;
+        font-size: 1.3rem;
+        background: linear-gradient(90deg, #3366ff, #0033cc);
+        color: #fff;
+        border-radius: 30px;
+        cursor: pointer;
+        text-decoration: none; 
+        transition: background 0.3s ease, transform 0.3s ease;
+        width: fit-content;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .button2:hover {
+        background: linear-gradient(90deg, #0033cc, #001a80);
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+
+<h1>Aptitude Test</h1>
+
+
+<div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<form action="/Q/quiz2" method="post" id="quizForm">
+
+<div class="question">
+    <p>1. I stay calm and focused in stressful situations.</p>
+    <div class="options">
+        <label><input type="radio" name="q1" value="disagree"><span>Disagree</span></label>
+        <label><input type="radio" name="q1" value="neutral"><span>Neutral</span></label>
+        <label><input type="radio" name="q1" value="agree"><span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q1" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>2. I am eager to know about how the human body works and why it behaves the way it does.</p>
+    <div class="options">
+        <label><input type="radio" name="q2" value="disagree"><span>Disagree</span></label>
+        <label><input type="radio" name="q2" value="neutral"><span>Neutral</span></label>
+        <label><input type="radio" name="q2" value="agree"><span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q2" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>3. I enjoy reading novels, history, or social science topics.</p>
+    <div class="options">
+        <label><input type="radio" name="q3" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q3" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q3" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q3" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>4. I am curious about human behavior and relationships.</p>
+    <div class="options">
+        <label><input type="radio" name="q4" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q4" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q4" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q4" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>5. I prefer logical problem-solving over creative writing or drawing.</p>
+    <div class="options">
+        <label><input type="radio" name="q5" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q5" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q5" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q5" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>6. I like learning how websites, apps, or games are made.</p>
+    <div class="options">
+        <label><input type="radio" name="q6" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q6" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q6" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q6" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>7. You like to speak up if your feel something unfair is happening around you.</p>
+    <div class="options">
+        <label><input type="radio" name="q7" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q7" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q7" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q7" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>8. I like persuading or negotiating with others.</p>
+    <div class="options">
+        <label><input type="radio" name="q8" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q8" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q8" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q8" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>9. I enjoy analyzing numbers, trends, or financial data.</p>
+    <div class="options">
+        <label><input type="radio" name="q9" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q9" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q9" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q9" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>10. I am curious about how stock markets, business news, or new startups work.</p>
+    <div class="options">
+        <label><input type="radio" name="q10" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q10" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q10" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q10" value="prefer_not"> Prefer not to say</label>
+</div>
+
+    <div class="question q1">
+      <p>11. I am good at convincing or motivating others.</p>
+      <div class="options">
+        <label><input type="radio" name="q11" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q11" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q11" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q11" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q2">
+      <p>12. I enjoy taking charge and leading.</p>
+      <div class="options">
+        <label><input type="radio" name="q12" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q12" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q12" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q12" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q3">
+      <p>13. I enjoy using video recording and editing technology.</p>
+      <div class="options">
+        <label><input type="radio" name="q13" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q13" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q13" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q13" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q4">
+      <p>14. I enjoy helping others understand new things.</p>
+      <div class="options">
+        <label><input type="radio" name="q14" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q14" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q14" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q14" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q5">
+      <p>15. I have a strong sense of honesty and ethical behavior.</p>
+      <div class="options">
+        <label><input type="radio" name="q15" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q15" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q15" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q15" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q6">
+      <p>16. I am eager to know about how the human body works and why it behaves the way it does.</p>
+      <div class="options">
+        <label><input type="radio" name="q16" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q16" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q16" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q16" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q7">
+      <p>17. I am curious about society, culture, and world events.</p>
+      <div class="options">
+        <label><input type="radio" name="q17" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q17" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q17" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q17" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q8">
+      <p>18. I like analyzing and interpreting information to make decisions.</p>
+      <div class="options">
+        <label><input type="radio" name="q18" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q18" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q18" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q18" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q9">
+      <p>19. I like expressing ideas creatively through writing, video, or social media.</p>
+      <div class="options">
+        <label><input type="radio" name="q19" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q19" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q19" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q19" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q10">
+      <p>20. I am patient and detail-oriented in my work.</p>
+      <div class="options">
+        <label><input type="radio" name="q20" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q20" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q20" value="agree"> <span>Agree</span></label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q20" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question">
+    <p>21. I enjoy performing experiments in a lab or observing results.</p>
+    <div class="options">
+        <label><input type="radio" name="q21" value="disagree"><span>Disagree</span></label>
+        <label><input type="radio" name="q21" value="neutral"><span>Neutral</span></label>
+        <label><input type="radio" name="q21" value="agree"><span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q21" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>22. I enjoy studying theory but also connecting it to real-world applications.</p>
+    <div class="options">
+        <label><input type="radio" name="q22" value="disagree"><span>Disagree</span></label>
+        <label><input type="radio" name="q22" value="neutral"><span>Neutral</span></label>
+        <label><input type="radio" name="q22" value="agree"><span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q22" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>23. I enjoy building or fixing gadgets, machines, or electronics.</p>
+    <div class="options">
+        <label><input type="radio" name="q23" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q23" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q23" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q23" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>24. I enjoy drawing or planning buildings, bridges, or infrastructure projects.</p>
+    <div class="options">
+        <label><input type="radio" name="q24" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q24" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q24" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q24" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>25. I like understanding how signals, networks, or communication systems work.</p>
+    <div class="options">
+        <label><input type="radio" name="q25" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q25" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q25" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q25" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>26. I enjoy analyzing data, algorithms, and system designs.</p>
+    <div class="options">
+        <label><input type="radio" name="q26" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q26" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q26" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q26" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>27. I prefer logical problem-solving over physical/mechanical work.</p>
+    <div class="options">
+        <label><input type="radio" name="q27" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q27" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q27" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q27" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>28. I enjoy understanding how things move, function, or are constructed.</p>
+    <div class="options">
+        <label><input type="radio" name="q28" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q28" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q28" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q28" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>29. I complete my tasks on time without being reminded.</p>
+    <div class="options">
+        <label><input type="radio" name="q29" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q29" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q29" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q29" value="prefer_not"> Prefer not to say</label>
+</div>
+
+<div class="question">
+    <p>30. I feel motivated when my actions make others happy or comfortable.</p>
+    <div class="options">
+        <label><input type="radio" name="q30" value="disagree"> <span>Disagree</span></label>
+        <label><input type="radio" name="q30" value="neutral"> <span>Neutral</span></label>
+        <label><input type="radio" name="q30" value="agree"> <span>Agree</span></label>
+    </div>
+    <label class="prefer-not"><input type="radio" name="q30" value="prefer_not"> Prefer not to say</label>
+</div>
+
+
+<button class="button2">Next</button>
+
+</form>
+
+<script>
+    const form = document.getElementById("quizForm");
+    const progressBar = document.getElementById("progress-bar");
+    const totalQuestions = document.querySelectorAll(".question").length;
+
+    // Track progress
+    form.addEventListener("change", () => {
+        let answered = 0;
+        for (let i = 1; i <= totalQuestions; i++) {
+            if (form[`q${i}`] && form[`q${i}`].value) {
+
+                answered++;
+            }
+        }
+        let progress = (answered / totalQuestions) * 100;
+        progressBar.style.width = progress + "%";
+    });
+
+    // Allow deselecting radio buttons by clicking again
+    document.querySelectorAll("input[type=radio]").forEach(radio => {
+        radio.addEventListener("mousedown", function(e) {
+            if (this.checked) {
+                e.preventDefault(); // Prevent default re-check
+                this.checked = false; // Uncheck it
+                this.dispatchEvent(new Event("change")); // Trigger change event for progress
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
