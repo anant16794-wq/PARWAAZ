@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 50px;
+    }
+
+    .faq-container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .faq-item {
+      background: #fff;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      cursor: pointer;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: #555;
+    }
+
+    .faq-answer.open {
+      padding: 15px 20px;
+      max-height: 200px;
+    }
+
+    .icon {
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .rotate {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="faq-container">
+    <div class="faq-item">
+      <div class="faq-question">
+        Are the services of Parwaaz available for free?
+        <span class="icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, Parwaaz services are completely free of cost because we believe in empowering students without any financial burden.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Does Parwaaz provide Study Material for respective competitive exams?
+        <span class="icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, we provide comprehensive study material for various competitive exams to help students prepare effectively.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Is Parwaaz helpful to choose the right college and career pathway?
+        <span class="icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, Parwaaz provides guidance and resources to help students make informed decisions about their college and career paths according to their interests.
+      </div>
+    </div>
+
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        Am I able to reattempt the Test ?
+        <span class="icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, you can reattempt the test.
+      </div>
+    </div>
+
+    <!-- New FAQ 2 -->
+    <div class="faq-item">
+      <div class="faq-question">
+        Is the scholarship data accurate?
+        <span class="icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes, we ensure that all scholarship data is accurate and up-to-date to provide the best guidance to our users.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const faqs = document.querySelectorAll(".faq-item");
+
+    faqs.forEach(faq => {
+      faq.querySelector(".faq-question").addEventListener("click", () => {
+        const answer = faq.querySelector(".faq-answer");
+        const icon = faq.querySelector(".icon");
+
+        answer.classList.toggle("open");
+        icon.classList.toggle("rotate");
+      });
+    });
+  </script>
+
+</body>
+</html>

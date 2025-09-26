@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overlapping Images with Quote</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.quote-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    max-width: 1000px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    gap: 40px;
+}
+
+.images-left {
+    position: relative;
+    width: 50%;
+    max-width: 400px;
+    height: 200px;
+}
+
+.images-left img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    position: absolute;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.images-left img:nth-child(1) {
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transform: rotate(-5deg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.images-left img:nth-child(2) {
+    top: 40px;
+    left: 60px;
+    z-index: 2;
+    transform: rotate(5deg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.images-left img:nth-child(3) {
+    top: 80px;
+    left: 120px;
+    z-index: 1;
+    transform: rotate(-2deg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.images-left img:hover {
+    transform: scale(1.1) rotate(0deg);
+    z-index: 4;
+}
+
+.quote-right {
+    width: 50%;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+    font-style: italic;
+    position: relative;
+}
+
+.quote-right::before {
+    content: "“";
+    font-size: 3rem;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    color: #999;
+}
+
+.quote-right::after {
+    content: "”";
+    font-size: 3rem;
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    color: #999;
+}
+
+</style>
+</head>
+<body>
+
+<div class="quote-box">
+    <div class="images-left">
+        <img src="46.jpeg" alt="Image 1">
+        <img src="47.jpeg" alt="Image 2">
+        <img src="48.jpeg" alt="Image 3">
+    </div>
+    <div class="quote-right">
+        Life is full of moments, and each image tells a story that words cannot.
+    </div>
+</div>
+
+</body>
+</html>

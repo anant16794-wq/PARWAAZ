@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colleges Table (J&K)</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f0f2f5;
+  }
+
+  header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 20px;
+  }
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .header-buttons button {
+    background: #3498db;
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  .header-buttons button:hover {
+    background: #2980b9;
+  }
+
+  .search-bar {
+    margin: 20px;
+    text-align: right;
+  }
+  .search-bar input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: 0.3s;
+  }
+  .search-bar input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  }
+
+  table {
+    width: 95%;
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  th, td {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  th {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  tr {
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  tr:hover {
+    background: #eaf3fc;
+    transform: scale(1.01);
+  }
+
+  td.institution {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .view-btn {
+    display: none;
+    background: #e67e22;
+    border: none;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+  }
+  .view-btn:hover {
+    background: #d35400;
+  }
+  td.institution:hover .view-btn {
+    display: inline-block;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 450px;
+    max-width: 90%;
+    text-align: left;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  }
+  .modal-content h2 {
+    margin-top: 0;
+    color: #2c3e50;
+  }
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
+  }
+  .close:hover {
+    color: red;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+  }
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1>College Details</h1>
+  <div class="header-buttons">
+    <a href="./homepage3.html"><button>Home</button></a>
+    <a href="./PARWAAZ_scholorships.html"><button>Scholarships</button></a>
+  </div>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="citySearch" placeholder="Search by city...">
+</div>
+
+<h2 style="margin-left:20px;">Colleges & Institutions of Jammu & Kashmir</h2>
+
+<table id="collegeTable">
+  <thead>
+    <tr>
+      <th>S.No.</th>
+      <th>Institution Name</th>
+      <th>City</th>
+      <th>Entrance Examination</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+
+<div id="collegeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="collegeName"></h2>
+    <p id="collegeDetails"></p>
+  </div>
+</div>
+
+<script>
+  
+  const colleges = [
+    {sno:1,name:"Government College for Women, Parade Ground, Jammu",city:"Jammu",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:2,name:"Government College for Women, Gandhi Nagar, Jammu",city:"Jammu",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:3,name:"Government Degree College, Jammu",city:"Jammu",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:4,name:"Government Degree College, Akhnoor",city:"Akhnoor",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:5,name:"Government Degree College, Bishnah",city:"Bishnah",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:6,name:"Government Degree College, Khour",city:"Khour",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:7,name:"Government Degree College, Jandrah",city:"Jandrah",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:8,name:"Government Degree College, Paloura",city:"Paloura",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BCA"},
+    {sno:9,name:"Government Degree College, R.S. Pura",city:"R.S. Pura",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:10,name:"Government Degree College, Sidhra",city:"Sidhra",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:11,name:"Government Degree College, Marh",city:"Marh",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:12,name:"Government Degree College, Jourian",city:"Jourian",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:13,name:"Government Degree College, Samba",city:"Samba",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:14,name:"Government Degree College, Vijaypur",city:"Vijaypur",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:15,name:"Government Degree College, Ramgarh",city:"Ramgarh",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:16,name:"Government Degree College, Ghagwal",city:"Ghagwal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:17,name:"Government Degree College, Kathua",city:"Kathua",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:18,name:"Government Degree College for Women, Kathua",city:"Kathua",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:19,name:"Government Degree College, Hiranagar",city:"Hiranagar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:20,name:"Government Degree College, Billawar",city:"Billawar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:21,name:"Government Degree College, Billawar",city:"Billawar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:22,name:"Government Degree College, Basholi",city:"Basholi",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:23,name:"Government Degree College, Bani",city:"Bani",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:24,name:"Government Degree College, Doda",city:"Doda",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:25,name:"Government Degree College, Bhaderwah",city:"Bhaderwah",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:26,name:"Government Degree College, Kishtwar",city:"Kishtwar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:27,name:"Government Degree College, Ramban",city:"Ramban",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:28,name:"Government Degree College, Banihal",city:"Banihal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:29,name:"Government Degree College, Gool",city:"Gool",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:30,name:"Government Degree College, Udhampur",city:"Udhampur",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:31,name:"Government Degree College, Samba", city: "Samba", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:32,name:"Government Degree College, Ramgarh", city: "Ramgarh", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:33,name:"Government Degree College, Vijaypur", city: "Vijaypur", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:34,name:"Government Degree College, Ghagwal", city: "Ghagwal", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:35,name:"Government Degree College, Rajouri", city: "Rajouri", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:36,name:"Government Degree College, Thanamandi", city: "Thanamandi", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:37,name:"Government Degree College, Budhal", city: "Budhal", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:38,name:"Government Degree College, Kalakote", city: "Kalakote", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:39,name:"Government Degree College, Nowshera", city: "Nowshera", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:40,name:"Government Degree College, Sunderbani", city: "Sunderbani", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:41,name:"Government Degree College, Kotranka", city: "Kotranka", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:42,name:"Government Degree College, Poonch", city: "Poonch", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:43,name:"Government Degree College, Mendhar", city: "Mendhar", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:44,name:"Government Degree College, Surankote", city: "Surankote", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:45,name:"Government Degree College, Mandi", city: "Mandi", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:46,name:"Government Degree College, Haveli", city: "Haveli", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:47,name:"Government Degree College, Kulgam", city: "Kulgam", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:48,name:"Government Degree College, Devsar", city: "Devsar", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:49,name:"Government Degree College, DH Pora", city: "DH Pora", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:50,name:"Government Degree College, Frisal", city: "Frisal", exam: "CUET-UG", details: "Courses: BA, B.Sc., B.Com." },
+    {sno:51,name:"Government Degree College, Ramkote",city:"Ramkote",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:52,name:"Government Degree College, Kathua",city:"Kathua",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:53,name:"Government Degree College for Women, Kathua",city:"Kathua",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:54,name:"Government Degree College, Billawar",city:"Billawar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:55,name:"Government Degree College, Basohli",city:"Basohli",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:56,name:"Government Degree College, Hiranagar",city:"Hiranagar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:57,name:"Government Degree College, Bani",city:"Bani",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:58,name:"Government Degree College, Mahanpur",city:"Mahanpur",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:59,name:"Government Degree College, Dinga Amb",city:"Dinga Amb",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:60,name:"Government Degree College, Marheen",city:"Marheen",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:61,name:"Government Degree College, Samba",city:"Samba",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:62,name:"Government Degree College, Vijaypur",city:"Vijaypur",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:63,name:"Government Degree College, Ramgarh",city:"Ramgarh",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:64,name:"Government Degree College, Ghagwal",city:"Ghagwal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:65,name:"Government Degree College, Nud",city:"Nud",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:66,name:"Government Degree College, Purmandal",city:"Purmandal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:67,name:"Government Degree College, Surankote",city:"Surankote",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:68,name:"Government Degree College, Mendhar",city:"Mendhar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:69,name:"Government Degree College, Mandi",city:"Mandi",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:70,name:"Government Degree College, Bufliaz",city:"Bufliaz",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:71,name:"Government Degree College, Thannamandi",city:"Thannamandi",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:72,name:"Government Degree College, Darhal",city:"Darhal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:73,name:"Government Degree College, Kotranka",city:"Kotranka",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:74,name:"Government Degree College, Gandoh",city:"Gandoh",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:75,name:"Government Degree College, Thathri",city:"Thathri",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:76,name:"Government Degree College, Vijaypur",city:"Vijaypur",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:77,name:"Amar Singh College, Srinagar",city:"Srinagar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:78,name:"Gandhi Memorial College, Srinagar",city:"Srinagar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:79,name:"Government College for Women, M.A. Road, Srinagar",city:"Srinagar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:80,name:"Government College for Women, Nawakadal, Srinagar",city:"Srinagar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:81,name:"Government Degree College, Bemina",city:"Bemina",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:82,name:"Government Degree College, Kralpora",city:"Kralpora",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:83,name:"Government Degree College, Khanyar",city:"Khanyar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:84,name:"Government Degree College, Eidgah",city:"Eidgah",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:85,name:"Government Degree College, Nowhatta",city:"Nowhatta",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:86,name:"Government Degree College, Shalimar",city:"Shalimar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:87,name:"Government Degree College, Soura",city:"Soura",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:88,name:"Government Degree College, Qazigund",city:"Qazigund",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:89,name:"Government Degree College, Dooru",city:"Dooru",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:90,name:"Government Degree College, Bijbehara",city:"Bijbehara",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:91,name:"Government Women's College, Anantnag",city:"Anantnag",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:92,name:"Government Boys College, Anantnag",city:"Anantnag",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:93,name:"Government Degree College, Kokernag",city:"Kokernag",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:94,name:"Government Degree College, Uttersoo",city:"Uttersoo",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:95,name:"Government Degree College, Vailoo, Lamoo",city:"Vailoo, Lamoo",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:96,name:"Government Degree College, Bandipora",city:"Bandipora",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:97,name:"Government Degree College, Gurez",city:"Gurez",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:98,name:"Government Degree College, Sumbal",city:"Sumbal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:99,name:"Government Degree College, Baramulla",city:"Baramulla",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:100,name:"Government Degree College, Sopore",city:"Sopore",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:101,name:"Government Degree College, Uri",city:"Uri",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:102,name:"Government Degree College, Pattan",city:"Pattan",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:103,name:"Government Degree College, Rafiabad",city:"Rafiabad",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:104,name:"Government Degree College, Tangmarg",city:"Tangmarg",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:105,name:"Government Degree College, Budgam",city:"Budgam",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:106,name:"Government Degree College, Beerwah",city:"Beerwah",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:107,name:"Government Degree College, Charar-e-Sharief",city:"Charar-e-Sharief",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:108,name:"Government Degree College, Khansahib",city:"Khansahib",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:109,name:"Government Degree College, Magam",city:"Magam",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:110,name:"Government Degree College, Poshkar",city:"Poshkar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:111,name:"Government Degree College, Kupwara",city:"Kupwara",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:112,name:"Government Degree College, Handwara",city:"Handwara",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:113,name:"Government Degree College, Langate",city:"Langate",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:114,name:"Government Degree College, Sogam",city:"Sogam",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:115,name:"Government Degree College, Trehgam",city:"Trehgam",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:116,name:"Government Degree College, Shopian",city:"Shopian",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:117,name:"Government Degree College, Zainapora",city:"Zainapora",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:118,name:"Government Degree College, Pulwama",city:"Pulwama",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA, BCA"},
+    {sno:119,name:"Government Degree College, Tral",city:"Tral",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:120,name:"Government Degree College, Pampore",city:"Pampore",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:121,name:"Government Degree College, Rajpora",city:"Rajpora",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:122,name:"Government Degree College, Awantipora",city:"Awantipora",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com., BBA"},
+    {sno:123,name:"Government Degree College, Kakapora",city:"Kakapora",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:124,name:"Government Degree College, Bani",city:"Bani",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:125,name:"Government Degree College, Banihal",city:"Banihal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:126,name:"Government Degree College, Basohli",city:"Basohli",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:127,name:"Government Degree College, Budhal",city:"Budhal",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:128,name:"Government Degree College, Dharmari",city:"Dharmari",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:129,name:"Government Degree College, Doda",city:"Doda",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:130,name:"Government Degree College, Doongi, Rajouri",city:"Doongi, Rajouri",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:131,name:"Islamia College of Science and Commerce, Srinagar",city:"Srinagar",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:132,name:"Govt Gandhi Memorial Science College, Jammu",city:"Jammu",exam:"CUET-UG",details:"Courses: B.Sc."},
+    {sno:133,name:"Govt MAM PG College, Jammu",city:"Jammu",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:134,name:"Sri Pratap College, Jammu",city:"Jammu",exam:"CUET-UG",details:"Courses: BA, B.Sc., B.Com."},
+    {sno:135,name:"AIIMS, Vijaypur (Jammu)",city:"Vijaypur",exam:"NEET-UG",details:"Courses: MBBS, B.Sc. Nursing, Allied Health Sciences"},
+    {sno:136,name:"AIIMS, Awantipora",city:"Awantipora",exam:"NEET-UG",details:"Courses: MBBS, B.Sc. Nursing, Allied Health Sciences"},
+    {sno:137,name:"Government Medical College, Anantnag",city:"Anantnag",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:138,name:"Government Medical College, Baramulla",city:"Baramulla",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:139,name:"Government Medical College, Doda",city:"Doda",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:140,name:"Government Medical College, Handwara",city:"Handwara",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:141,name:"Government Medical College, Jammu",city:"Jammu",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:142,name:"Government Medical College, Kathua",city:"Kathua",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:143,name:"Government Medical College, Rajouri",city:"Rajouri",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:144,name:"Government Medical College, Srinagar",city:"Srinagar",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:145,name:"Government Medical College, Udhampur",city:"Udhampur",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Paramedical"},
+    {sno:146,name:"Sher-i-Kashmir Institute of Medical Sciences (SKIMS), Srinagar",city:"Srinagar",exam:"NEET-UG (MBBS), JKBOPEE CET (others)",details:"Courses: MBBS, B.Sc. Nursing & Allied Sciences"},
+    {sno:147,name:"Acharya Shri Chander College of Medical Sciences, Jammu",city:"Jammu",exam:"NEET-UG",details:"Courses: MBBS"},
+    {sno:148,name:"SMVDU Nursing College, Katra",city:"Katra",exam:"SMVDU Entrance Test",details:"Courses: B.Sc. Nursing"},
+    {sno:149,name:"IPHH College of Nursing, Jammu",city:"Jammu",exam:"State / Institute Entrance",details:"Courses: B.Sc. Nursing"},
+    {sno:150,name:"Indian Institute of Technology (IIT), Jammu",city:"Jammu",exam:"JEE Advanced + JoSAA Counselling",details:"Programs: Engineering (B.Tech)"},
+    {sno:151,name:"National Institute of Technology (NIT), Srinagar",city:"Srinagar",exam:"JEE Main + JoSAA Counselling",details:"Programs: Engineering (B.Tech)"},
+    {sno:152,name:"Shri Mata Vaishno Devi University (SMVDU)",city:"Katra, Reasi",exam:"JEE Main / SMVDU Entrance Test",details:"Programs: Engineering, Management, Science"},
+    {sno:153,name:"Islamic University of Science & Technology (IUST)",city:"Awantipora",exam:"IUST Entrance Test",details:"Programs: Engineering, Science, Management"},
+    {sno:154,name:"Baba Ghulam Shah Badshah University (BGSBU)",city:"Rajouri",exam:"BGSBU Entrance Test",details:"Programs: Engineering, Science, Management"},
+    {sno:155,name:"Central University of Jammu",city:"Jammu",exam:"CUET-UG",details:"Programs: Various UG Courses"},
+    {sno:156,name:"GCET (Government College of Engineering & Technology), Jammu",city:"Jammu",exam:"JKCET / BOPEE Counselling",details:"Programs: Engineering (B.Tech)"},
+    {sno:157,name:"GCET (Government College of Engineering & Technology), Ganderbal",city:"Ganderbal",exam:"JKCET / BOPEE Counselling",details:"Programs: Engineering (B.Tech)"},
+    {sno:158,name:"Institute of Technology, Zakura Campus (University of Kashmir)",city:"Srinagar",exam:"University Entrance Test",details:"Programs: Engineering (B.Tech)"},
+    {sno:159,name:"Model Institute of Engineering & Technology (MIET)",city:"Jammu",exam:"JEE Main, JKCET, CUET-UG, MET",details:"Programs: Engineering (B.Tech)"},
+    {sno:160,name:"Mahant Bachittar Singh College of Engineering & Technology",city:"Jammu",exam:"Merit-based",details:"Programs: Engineering (B.Tech)"},
+    {sno:161,name:"Yogananda College of Engineering & Technology",city:"Jammu",exam:"State / Institute Entrance",details:"Programs: Engineering (B.Tech)"},
+    {sno:162,name:"Bhargava College of Engineering & Technology",city:"Samba",exam:"State / University Entrance",details:"Programs: Engineering (B.Tech)"}
+];
+
+  const tableBody = document.querySelector("#collegeTable tbody");
+
+  function renderTable(filteredColleges) {
+    tableBody.innerHTML = "";
+    filteredColleges.forEach(college => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${college.sno}</td>
+        <td class="institution">
+          ${college.name}
+          <button class="view-btn" onclick="openModal('${college.name}', '${college.details}')">View More</button>
+        </td>
+        <td>${college.city}</td>
+        <td>${college.exam}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  renderTable(colleges);
+
+  document.getElementById("citySearch").addEventListener("keyup", function() {
+    const query = this.value.toLowerCase();
+    const filtered = colleges.filter(c => c.city.toLowerCase().includes(query));
+    renderTable(filtered);
+  });
+
+  function openModal(name, details) {
+    document.getElementById("collegeName").textContent = name;
+    document.getElementById("collegeDetails").textContent = details;
+    document.getElementById("collegeModal").style.display = "flex";
+  }
+  function closeModal() {
+    document.getElementById("collegeModal").style.display = "none";
+  }
+  window.onclick = function(event) {
+    const modal = document.getElementById("collegeModal");
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+</script>
+
+</body>
+</html>

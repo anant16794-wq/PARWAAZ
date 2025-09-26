@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionnaire</title>
+  <style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+}
+
+.question {
+    width: 100%;
+    padding: 25px 20px;
+    margin: 20px auto;
+    background: linear-gradient(90deg, #cce0ff, #99c2ff);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.question p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 10px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.prefer-not {
+    font-style: italic;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+.button2 {
+    display: block;
+    text-align: center;
+    margin: 40px auto;
+    padding: 18px 45px;
+    font-size: 1.3rem;
+    background-color: #3366ff;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    width: fit-content;
+}
+
+.button2:hover {
+    background-color: #0033cc;
+    transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+  <header>
+    <a href="#">Instructions</a>
+  </header>
+
+  <div class="container">
+    <div class="question q1">
+      <p>11. I am curious about how stock markets, business news, or new startups work.</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q1" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q1" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q1" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q2">
+      <p>12. I enjoy keeping records, lists, or tracking small expenses.</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q2" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q2" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q2" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q3">
+      <p>13. I prefer learning by doing practical activities rather than just reading books</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q3" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q3" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q3" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q4">
+      <p>14. I like asking “why things happen” and finding reasons behind events.</p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q4" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q4" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q4" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q5">
+      <p>15. I like influencing decisions when working in a team.</p>
+      <div class="options">
+        <label><input type="radio" name="q5" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q5" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q5" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q5" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q6">
+      <p>16. I am eager to know about how the human body works and why it behaves the way it does.</p>
+      <div class="options">
+        <label><input type="radio" name="q6" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q6" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q6" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q6" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q7">
+      <p>17. I can easily blend in with a new group of people.</p>
+      <div class="options">
+        <label><input type="radio" name="q7" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q7" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q7" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q7" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q8">
+      <p>18. I enjoy solving technical problems.</p>
+      <div class="options">
+        <label><input type="radio" name="q8" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q8" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q8" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q8" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q9">
+      <p>19. I complete my tasks on time without being reminded.</p>
+      <div class="options">
+        <label><input type="radio" name="q9" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q9" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q9" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q9" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <div class="question q10">
+      <p>20. I feel motivated when my actions make others happy or comfortable.</p>
+      <div class="options">
+        <label><input type="radio" name="q10" value="disagree"> Disagree</label>
+        <label><input type="radio" name="q10" value="neutral"> Neutral</label>
+        <label><input type="radio" name="q10" value="agree"> Agree</label>
+      </div>
+      <label class="prefer-not"><input type="radio" name="q10" value="prefer-not"> Prefer not to say</label>
+    </div>
+
+    <a href="homepage3.html" class="button2">Submit</a>
+  </div>
+
+</body>
+</html>
