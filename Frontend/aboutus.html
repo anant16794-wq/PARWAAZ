@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url("47.jpeg");
+      background-image: url("45.jpeg");
       background-size: cover;      
       background-position: center;  
       background-attachment: fixed;   
@@ -28,7 +28,7 @@
 
     .head {
       background-color: rgb(0, 32, 57);
-      height: 50px;
+      height: 75px;
       display: flex;
     }
 
@@ -69,6 +69,21 @@
 
     .head li a:hover::after {
       width: 100%;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .logo img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
     }
 
     .container {
@@ -180,12 +195,16 @@
 
   <header>
     <div class="head">
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+        PARWAAZ
+    </div>
       <div class="head-inner">
         <ul>
           <li><a href="homepage3.html">Home</a></li>
           <li><a href="aboutus.html">About us</a></li>
           <li><a href="PARWAAZ_clg.html">Colleges</a></li>
-          <li><a href="PARWAAZ_scholorships.html">Scholarship</a></li>
+          <li><a href="PARWAAZ_scholorship.html">Scholarship</a></li>
           <li><a href="login.html">Logout</a></li>
         </ul>
       </div>
