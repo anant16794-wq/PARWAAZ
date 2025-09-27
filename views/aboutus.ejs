@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("45.jpeg");
+      background-size: cover;      
+      background-position: center;  
+      background-attachment: fixed;   
+      background-repeat: no-repeat;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.6); 
+      z-index: -1;
+    }
+
+    .head {
+      background-color: rgb(0, 32, 57);
+      height: 75px;
+      display: flex;
+    }
+
+    .head-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .head ul {
+      display: flex;
+      gap: 50px;
+      list-style-type: none;
+      font-size: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .head li a {
+      text-decoration: none;
+      color: white;
+      position: relative;
+    }
+
+    .head li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 0;
+      background-color: #3c7183;
+      transition: width 0.4s ease;
+    }
+
+    .head li a:hover::after {
+      width: 100%;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .logo img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    .container label {
+      font-size: 50px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 120px;
+      width: 100%;
+    }
+
+    .row-1 {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    .box {
+      width: 100%;
+      min-height: 250px;
+      padding: 30px;
+      text-align: center;
+      color: black;
+      border-radius: 15px;
+      opacity: 0.9; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: radial-gradient(circle, #d2d5da, #616e82);
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .container p {
+      font-size: 20px;
+    }
+
+    label {
+      font-size: 1.6rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .team {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .team img {
+      height: 300px;
+      width: 440px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .box.team {
+      display: flex;
+      flex-direction: column;      
+      align-items: center;
+      justify-content: center; 
+      text-align: center;   
+      gap: 20px;
+    }
+
+    .team ul {
+      list-style-type: none;
+      margin-top: 35px;
+      padding: 0;
+      text-align: center;
+    }
+
+    .team ul li {
+      font-size: 25px;
+      line-height: 35px;
+      display: block;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="head">
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+        PARWAAZ
+    </div>
+      <div class="head-inner">
+        <ul>
+          <li><a href="http://localhost:3000/home">Home</a></li>
+          <li><a href="http://localhost:3000/colleges">Colleges</a></li>
+          <li><a href="http://localhost:3000/schlorship">Scholarship</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="row-2">
+      <div class="box mission">
+        <label>Our Mission</label>
+        <p>
+          Our mission is to empower every learner and professional
+          with a personalized roadmap to success by providing guidance
+          that is accurate, practical, and tailored to individual
+          aspirations.
+        </p>
+      </div>
+      <div class="box vision">
+        <label>Our Vision</label>
+        <p>
+          We aspire to become the most trusted one-stop destination
+          for career and education advice, breaking barriers and
+          empowering people to dream bigger. By combining innovation,
+          mentorship, and technology, we envision a generation that is
+          not just job-ready but future-ready.
+        </p>
+      </div>
+    </div>
+
+    <div class="row-1">
+      <div class="box values">
+        <label>Our Values</label>
+        <p>
+          Our values are rooted in trust, inclusivity, and empowerment.
+          We believe in providing honest guidance that respects every
+          individual’s unique journey, dreams, and challenges. Above all,
+          we value people first — their growth, their potential, and
+          their right to a brighter future.
+        </p>
+      </div>
+    </div>
+
+    <div class="row-1">
+      <div class="box who">
+        <label>Who Are We?</label>
+        <p>
+          We are a passionate team of dreamers, educators, and
+          innovators dedicated to transforming the way people discover
+          their careers and education paths. As a one-stop personalized
+          advisor, we combine technology, mentorship, and real-world
+          insights to guide individuals at every step of their journey.
+        </p>
+      </div>
+    </div>
+
+    <div class="row-1">
+      <div class="box team">
+        <label>Our Team</label>
+        <div class="team">
+          <img src="44.jpeg" alt="Team Image">
+          <ul>
+            <li>Sanket Maheshwari : Team Leader</li>
+            <li>Anant Masih : Backend Developer</li>
+            <li>Kishan Sharma : UI/UX Designer</li>
+            <li>Priyanshi Duva : Frontend Developer</li>
+            <li>Purnendu Sain : Database Administrator</li>
+            <li>Zaid Dar : Research Manager</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,6 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
+router.get('/quizchoose', (req,res) => {
+    res.render('quizchoose')
+})
+
 router.get('/quiz', (req,res) => {
     res.render('quiz1')
 })
@@ -199,7 +203,7 @@ router.post('/quiz' , (req,res) => {
     console.log(vocal)
     console.log(req.body)
     
-    res.render('pie_chart', {
+    res.render('analysis', {
     username: 'Aarav',
     stats: { science:scienceP,commerce:commerceP,arts:artsP,vocal:vocalP  }
     });
@@ -681,7 +685,7 @@ router.post('/quiz2' , (req,res) => {
 
     console.log(req.body)
 
-    res.render('pie_chart2',{
+    res.render('analysisS',{
     stats: {journ:journP,med:medP,ba:baP,ca:caP,law:lawP,cse:cseP,mech:mechP,civil:civilP,ece:eceP,bca:bcaP,bed:bedP,bba:bbaP,bsc:bscP,bcom:bcomP}    
     });
 

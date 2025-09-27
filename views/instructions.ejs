@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Instructions</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .instruction-container {
+    background: #fff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    max-width: 700px;
+    width: 90%;
+    text-align: left;
+    animation: fadeIn 1s ease;
+  }
+
+  .instruction-container h1 {
+    text-align: center;
+    color: #003366;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+  }
+
+  .instruction-container ul {
+    list-style: disc inside;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+
+  .instruction-container ul li {
+    margin-bottom: 15px;
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .start-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 18px 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #005f73;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .start-btn:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+
+  .start-btn:hover:not(:disabled) {
+    background-color: #00bcd4;
+    color: #003366;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+
+  @media (max-width: 768px) {
+    .instruction-container {
+      padding: 30px 20px;
+    }
+    .instruction-container h1 {
+      font-size: 1.8rem;
+    }
+    .instruction-container ul {
+      font-size: 1rem;
+    }
+    .checkbox-container {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="instruction-container">
+  <h1>Instructions for the Test</h1>
+  <ul>
+    <li>This is not an exam — there are no right or wrong answers.</li>
+    <li>Answer honestly based on your interests, preferences, and personality.</li>
+    <li>Choose the option that feels most natural to you, not what others expect.</li>
+    <li>There will be Agree, Disagree, or Neutral type of questions.</li>
+    <li>Take your time — but don’t overthink.</li>
+    <li>Your responses will help us suggest the most suitable streams, courses, and careers for you.</li>
+    <li>All your answers will remain confidential and only be used to guide you.</li>
+    <li>Once you begin, avoid skipping questions to get the most accurate results.</li>
+    <li>The test may take around 10–15 minutes to complete.</li>
+    <li>At the end, you’ll receive personalized recommendations based on your answers.</li>
+  </ul>
+
+  <div class="checkbox-container">
+    <input type="checkbox" id="readInstruction">
+    <label for="readInstruction">I've read the instructions</label>
+  </div>
+
+  <button class="start-btn" id="startBtn" disabled>Start Test</button>
+
+<script>
+  const checkbox = document.getElementById('readInstruction');
+  const startBtn = document.getElementById('startBtn');
+
+  
+  checkbox.addEventListener('change', () => {
+    startBtn.disabled = !checkbox.checked;
+  });
+
+  
+  startBtn.addEventListener('click', () => {
+    if (checkbox.checked) {
+      window.location.href = 'http://localhost:3000/Q/quizchoose';
+    }
+  });
+</script>
+
+</body>
+</html>

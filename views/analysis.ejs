@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analysis Dashboard</title>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f0ff, #d9e4ff, #f0f5ff);
+      min-height: 100vh;
+      padding: 30px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    /* VERTICAL CONTAINER */
+    .analysis-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    /* ANALYSIS DIVS */
+    .analysis-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0; /* Start hidden for animation */
+    }
+
+    /* Delay each card's animation */
+    .analysis-card:nth-child(1) { animation-delay: 0.1s; }
+    .analysis-card:nth-child(2) { animation-delay: 0.3s; }
+    .analysis-card:nth-child(3) { animation-delay: 0.5s; }
+    .analysis-card:nth-child(4) { animation-delay: 0.7s; }
+
+    .analysis-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .analysis-card h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #2196f3;
+    }
+
+    .analysis-card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      .analysis-card h2 {
+        font-size: 18px;
+      }
+
+      .analysis-card p {
+        font-size: 13px;
+      }
+
+      .analysis-container {
+        gap: 15px;
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Dashboard Analysis</h1>
+    <div id="container" style="height: 400px; width: 400px; margin: auto;"></div>
+    <br><br>
+  <div class="analysis-container">
+    <div class="analysis-card">
+      <h2>Science</h2>
+      <p>Total Users: 5,320<br> Active: 4,210<br> New this week: 230</p>
+    </div>
+    <div class="analysis-card">
+      <h2>Commerce</h2>
+      <p>Revenue: $45,000<br> Growth: 12%<br> Top Product: Laptops</p>
+    </div>
+    <div class="analysis-card">
+      <h2>Arts/Humanties</h2>
+      <p>Avg. Load Time: 1.2s<br> Uptime: 99.9%<br> Errors: 5 this week</p>
+    </div>
+    <div class="analysis-card">
+      <h2>Vocational</h2>
+      <p>Positive: 89%<br> Neutral: 7%<br> Negative: 4%</p>
+    </div>
+  </div>
+  <script>
+    Highcharts.chart('container', {
+      chart: {
+        type: 'pie',
+        options3d: {
+          enabled: true,
+          alpha: 45,
+          beta: 0
+        }
+      },
+      title: {
+        text: '3D Pie Chart Example'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          depth: 45,
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+          }
+        }
+      },
+      series: [{
+        name: 'Votes',
+        data: [
+          ['Science', <%= stats.science %>],
+          ['Arts', <%= stats.arts %>],
+          ['Vocational', <%= stats.vocal %>],
+          ['Commerce', <%= stats.commerce %>]
+        ]
+      }]
+    });
+  </script>
+</body>
+</html>

@@ -16,51 +16,70 @@ body {
     z-index: 0;
 }
 
- body::before{
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-            linear-gradient(rgba(185, 207, 255, 0.2), rgba(198, 215, 253, 0.2)),
-            url("51.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: fixed;
-            opacity: 0.1;
-            color: rgb(1, 19, 68);
-            z-index: -1;
-        }
+body::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+    linear-gradient(rgba(185, 207, 255, 0.2), rgba(198, 215, 253, 0.2)),
+    url("51.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    opacity: 0.1;
+    z-index: -1;
+}
 
 .heading {
     background: linear-gradient(90deg, #003366, #005f73);
     height: 80px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 40px;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
 }
 
-.heading ul {
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.logo img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.nav-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.nav-links ul {
     list-style: none;
     display: flex;
     gap: 30px;
     font-size: 18px;
     margin: 0;
+    padding: 0;
 }
-
-.heading li a {
+.nav-links li a {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
     padding: 5px;
     position: relative;
 }
-
-.heading li a::after {
+.nav-links li a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -70,17 +89,28 @@ body {
     background-color: #000;
     transition: width 0.4s ease;
 }
-
-.heading li a:hover {
+.nav-links li a:hover {
     color: #000;
 }
-
-.heading li a:hover::after {
+.nav-links li a:hover::after {
     width: 100%;
 }
 
-.heading img{
-    margin-right: 865px;
+.logout-btn {
+    background: #fff;
+    color: #003366;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.logout-btn:hover {
+    background: #00bcd4;
+    color: #fff;
+    transform: scale(1.05);
 }
 
 .content {
@@ -91,7 +121,6 @@ body {
     width: 70%;
     max-width: 900px;
     margin: 100px auto;
-    margin-top: -50px;
     padding: 40px;
     text-align: center;
 }
@@ -120,7 +149,6 @@ body {
 .btn5 {
     border: none;
     background: #fff;
-    text-decoration: none;
     color: #000;
     padding: 20px 45px;
     cursor: pointer;
@@ -185,7 +213,7 @@ body {
     margin-left: 50px;
 }
 
-.quote-right::before {
+.quote-right.pa::before {
     content: "“";
     font-size: 3rem;
     position: absolute;
@@ -194,7 +222,7 @@ body {
     color: #999;
 }
 
-.quote-right::after {
+.quote-right.pa::after {
     content: "”";
     font-size: 3rem;
     position: absolute;
@@ -218,7 +246,7 @@ body {
 }
 
 .quote-right button:hover {
-    background-color: #00bcd4; 
+    background-color: #00bcd4;
     color: #003366; 
     transform: scale(1.1);
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
@@ -229,7 +257,8 @@ body {
     position: relative;
     width: 90%;
     max-width: 1000px;
-    height: 400px;
+    height: auto;
+    min-height: 350px;
     margin: 80px auto;
     border-radius: 22px;
     overflow: hidden;
@@ -255,16 +284,17 @@ body {
 
 .slide-image {
     flex: 1;
-    height: 100%;
+    max-width: 50%;
     border-radius: 15px;
     overflow: hidden;
 }
 
 .slide-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;          
+    object-fit: cover;   
     border-radius: 15px;
+    display: block;
 }
 
 .slide-text {
@@ -272,6 +302,7 @@ body {
     padding: 40px;
     color: #333;
 }
+
 
 .slide-text h2 {
     font-size: 2rem;
@@ -396,75 +427,100 @@ body {
 <body>
 
 <div class="heading">
-    <img src="./logo.png"height=80>
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="aboutus.html">About Us</a></li>
-        <li><a href="PARWAAZ_clg.html">Colleges</a></li>
-        <li><a href="PARWAAZ_scholorships.html">Scholarships</a></li>
-        <li><a href="login.html">Log Out</a></li>
-    </ul>
+    <div class="logo">
+        <img src="../logo.png" alt="Logo">
+        PARWAAZ
+    </div>
+
+    <div class="nav-links">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="http://localhost:3000/aboutus">About Us</a></li>
+            <li><a href="http://localhost:3000/colleges">Colleges</a></li>
+            <li><a href="http://localhost:3000/schlorship">Scholarships</a></li>
+            <li><a href="http://localhost:3000/faq">FAQ'S</a></li>
+        </ul>
+    </div>
+
+    <a href="login.html"><button class="logout-btn">Log Out</button></a>
 </div>
 
 <div class="content">
-    <h2 style="margin-bottom: 50px;font-size:50px">Take Our Aptitude Test</h2>
     <div class="text">
-        
         <div class="para">
             Choosing the right stream or college can be<br>
             confusing. Our quick quiz helps you find courses<br>
             and career paths that match your strengths. Start<br>
             now and take the first step toward your future!
         </div>
-        <img src="48.jpeg" alt="Illustration">
+        <img src="../48.jpeg" alt="Illustration">
     </div>
-    <a href="instruction.html" class="btn5">Take Test</a>
+    <a href="http://localhost:3000/instructions"><button class="btn5">Take Test</button></a>
 </div>
-<h2 style="text-align: center;font-size: 100px;">View Colleges</h2>
+
 <div class="quote-box">
+    
     <div class="images-left">
         <img src="1.jpeg" alt="Image 1">
         <img src="2.jpeg" alt="Image 2">
         <img src="3.jpeg" alt="Image 3">
     </div>
-    <div class="quote-right">
-        Life is full of moments, and each image tells a story that words cannot.
-        <a href="PARWAAZ_clg.html"><button>View More</button>
-    </a>
+    <div class="quote-right"><h3>View Colleges</h3>
+        <p class="pa">Education is the passport to the future,<br>
+            for tomorrow belongs to those who prepare for it today.</p>
+        <a href="http://localhost:3000/colleges"><button>View More</button></a>
     </div>
 </div>
-<a href="./stories.html"><button style="text-align: center;font-size: 50px;margin-left:500px;margin-bottom:50px;color:#003366; border:none;background-color:#fff82f;border-radius:10px ">View Our sucess Stories</button></a>
+
 <div class="slideshow-box">
     <div class="slide">
-        <div class="slide-image"><img src="1.jpeg" alt="Slide 1"></div>
+        <div class="slide-image"><img src="52.webp" alt="Slide 1"></div>
         <div class="slide-text">
-            <h2>Explore Opportunities</h2>
-            <p>Discover different career paths and choose the right one for your future.</p>
+            <h2>Mrs. World</h2>
+            <p>
+                Sargam Koushal, from Jammu, became the Mrs World 2022, bringing the 
+                title back to India after 21 years, a significant success story for 
+                the region and the nation. A teacher-turned-model, her victory inspired
+                 many women to pursue their dreams and was celebrated by her local 
+                 community in Jammu.  
+            </p>
         </div>
     </div>
     <div class="slide">
-        <div class="slide-image"><img src="2.jpeg" alt="Slide 2"></div>
+        <div class="slide-image"><img src="b.jpeg" alt="Slide 2"></div>
         <div class="slide-text">
-            <h2>Learn with Us</h2>
-            <p>Gain skills and knowledge with courses designed to match your strengths.</p>
+            <h2>1st gene edited sheep of India</h2>
+            <p>
+                the Sher-e-Kashmir University of Agricultural Sciences and Technology 
+                of Kashmir (SKUAST-Kashmir) has successfully produced India’s first 
+                gene-edited sheep, marking a historic milestone in the field of animal 
+                biotechnology.
+            </p>
         </div>
     </div>
     <div class="slide">
-        <div class="slide-image"><img src="3.jpeg" alt="Slide 3"></div>
+        <div class="slide-image"><img src="c.jpeg" alt="Slide 3"></div>
         <div class="slide-text">
-            <h2>Shape Your Career</h2>
-            <p>Get guidance and tools that help you move confidently toward your goals.</p>
+            <h2>Awarded ICSSR Doctoral Fellowship</h2>
+            <p>
+            Tapas Sudan, a researcher at Shri Mata Vaishno Devi University, has 
+            been awarded the Centrally Administered Doctoral Fellowship by the Indian
+             Council of Social Science Research (ICSSR) Doctoral Fellowship.
+            </p>
         </div>
     </div>
     <div class="slide">
-        <div class="slide-image"><img src="19.jpg" alt="Slide 4"></div>
+        <div class="slide-image"><img src="d.jpeg" alt="Slide 4"></div>
         <div class="slide-text">
-            <h2>Achieve Success</h2>
-            <p>Your journey starts here. Take the next step and unlock new possibilities.</p>
+            <h2>Twist Ease Clean(TEC)Tank</h2>
+            <p>
+                A team of student innovators and faculty members from the Department of
+                 Electronics and Instrumentation Technology (DEIT), University of Kashmir
+                  (KU), has been granted a patent by the Patent Authority of India for
+                   their ground-breaking ‘Twist Ease Clean (TEC)’ tank design.</p>
         </div>
     </div>
 </div>
-<a href="./PARWAAZ_faq.html"><button style="text-align: center;font-size: 50px;margin-left:600px;margin-bottom:50px;color:#003366; border:none;background-color:#fff82f;border-radius:10px ">Some FAQ'S</button></a>
 
 <div class="footer-column">
     <h3>Contact Us</h3>
